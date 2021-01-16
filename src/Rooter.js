@@ -22,7 +22,12 @@ export default class Rooter extends Component {
                 <Tab.Navigator 
                     initialRouteName = 'Home'
                     tabBarOptions = {{
-                        activeTintColor: 'red'
+                        activeTintColor: '#f8f8f8',
+                        inactiveTintColor : '#586589',
+                        // showLabel : false -> sadece iconları görünür yapar.
+                        style : {
+                            backgroundColor : '#171f33'
+                        }
                         
                     }}>
                     <Tab.Screen
