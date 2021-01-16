@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import ContactList from '../components/ContactList';
 
-export default class Contact extends Component {
+export default class ModalSettings extends Component {
     render() {
-        const {navigate} = this.props.navigation;
+        const { goBack } = this.props.navigation
         return (
             <View style={style.container}>
-                <ContactList navigation = {this.props.navigation}/>
+                <Text>ModalSettings</Text>
+                <Button 
+                    title = 'Close Modal'
+                    onPress = {()=> {
+                        goBack()
+                    }}
+                    />
             </View>
         );
     }

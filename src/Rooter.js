@@ -9,9 +9,11 @@ import Settings from './screens/Settings';
 import Messages from './screens/Messages';
 import ContactDetail from './screens/ContactDetail';
 import Contact from './screens/Contact';
+import ModalSettings from './screens/ModalSettings';
 
 const Tab = createBottomTabNavigator()
-const ContactStack = createStackNavigator() 
+const ContactStack = createStackNavigator()
+const ModalSettingsStack = createStackNavigator();
 
 export default class Rooter extends Component {
     render() {
@@ -78,9 +80,10 @@ export default class Rooter extends Component {
                         }}
                     />
                     <Tab.Screen
-                        name='Settings'
-                        component={Settings}
+                        name='ModalSettingsStackComponent'
+                        component={ModalSettingsStackComponent}
                         options={{
+                            tabBarLabel : 'Settings',
                             tabBarIcon: ({ color }) => (
                                 <Icon
                                     name='settings'
@@ -103,16 +106,43 @@ class ContactStackComponent extends Component{
                     name= 'Contact'
                     component = {Contact}
                     options = {{
-                        
+                        headerTitleAlign : 'center'
                     }}
                     />
                 <ContactStack.Screen
                     name='ContactDetail'
                     component={ContactDetail}
                     options={({ route }) => ({
-                        title : route.params.who
+                        //title : route.params.who
                     })} />
             </ContactStack.Navigator>
+        )
+    }
+}
+class ModalSettingsStackComponent extends Component{
+    render() {
+        return(
+            <ModalSettingsStack.Navigator
+                initialRouteName= 'Settings'
+                mode = 'modal'> 
+                
+                <ModalSettingsStack.Screen
+                    name = 'Settings'
+                    component = {Settings}
+                    options = {{
+                        headerTitleAlign : 'center'
+                    }}
+                    
+                />
+                <ModalSettingsStack.Screen
+                    name='SettingsModal'
+                    component={ModalSettings}
+                    options={{
+                        headerShown : false
+                    }}
+                />
+
+            </ModalSettingsStack.Navigator>
         )
     }
 }
