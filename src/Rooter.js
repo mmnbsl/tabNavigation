@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
+import { createDrawerNavigator } from '@react-navigation/drawer' 
 import HomeScreen from './screens/HomeScreen';
 import Profile from './screens/Profile';
 import Settings from './screens/Settings';
@@ -16,16 +17,17 @@ import ModalSettings from './screens/ModalSettings';
 import Giris from './screens/top-Tabs/Giris';
 import Gelisme from './screens/top-Tabs/Gelisme';
 import Sonuc from './screens/top-Tabs/Sonuc';
+import { ColorPropType } from 'react-native';
 
 const TopTabs = createMaterialTopTabNavigator();
 const Tab = createBottomTabNavigator()
 const ContactStack = createStackNavigator()
 const ModalSettingsStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-export default class Rooter extends Component {
+class Rooter extends Component {
     render() {
         return (
-            <NavigationContainer>
                 <Tab.Navigator 
                     initialRouteName = 'Home'
                     tabBarOptions = {{
@@ -53,7 +55,7 @@ export default class Rooter extends Component {
                     />
                     <Tab.Screen
                         name= 'ContactStackComponent'
-                        component = {ContactStackComponent}
+                        component = {ContactStackComponent} 
                         options = {{
                             tabBarLabel : 'Contact',
                             tabBarIcon : ( {color} ) => (
@@ -106,7 +108,7 @@ export default class Rooter extends Component {
                         }}
                     />
                 </Tab.Navigator>
-            </NavigationContainer>
+            
         );
     }
 }
@@ -176,6 +178,25 @@ class TopTabComponent extends Component{
                     component={Sonuc}
                 />
             </TopTabs.Navigator>
+        )
+    }
+}
+
+export default class DrawerComponent extends Component{
+    render(){
+        return(
+            <NavigationContainer>
+                <Drawer.Navigator>
+                    <Drawer.Screen
+                        name = 'Home'
+                        component = {HomeScreen}
+                    />
+                    <Drawer.Screen
+                        name = 'Tab Menu'
+                        component = {Rooter}
+                    />
+                </Drawer.Navigator>
+            </NavigationContainer>
         )
     }
 }
