@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from './screens/HomeScreen';
 import Profile from './screens/Profile';
@@ -11,6 +12,12 @@ import ContactDetail from './screens/ContactDetail';
 import Contact from './screens/Contact';
 import ModalSettings from './screens/ModalSettings';
 
+//-----Top Navigation Screens -------//
+import Giris from './screens/top-Tabs/Giris';
+import Gelisme from './screens/top-Tabs/Gelisme';
+import Sonuc from './screens/top-Tabs/Sonuc';
+
+const TopTabs = createMaterialTopTabNavigator();
 const Tab = createBottomTabNavigator()
 const ContactStack = createStackNavigator()
 const ModalSettingsStack = createStackNavigator();
@@ -31,8 +38,8 @@ export default class Rooter extends Component {
                         
                     }}>
                     <Tab.Screen
-                        name = 'Home'
-                        component = {HomeScreen}
+                        name= 'TopTabComponent'
+                        component={TopTabComponent}
                         options = {{
                             tabBarLabel : 'Ana Sayfa',
                             tabBarIcon : ({ color }) => (
@@ -148,6 +155,27 @@ class ModalSettingsStackComponent extends Component{
                 />
 
             </ModalSettingsStack.Navigator>
+        )
+    }
+}
+
+class TopTabComponent extends Component{
+    render() {
+        return(
+            <TopTabs.Navigator>
+                <TopTabs.Screen
+                    name = 'Giris'
+                    component = {Giris}
+                />
+                <TopTabs.Screen
+                    name='Gelişme'
+                    component={Gelisme}
+                />
+                <TopTabs.Screen
+                    name='Sonuç'
+                    component={Sonuc}
+                />
+            </TopTabs.Navigator>
         )
     }
 }
